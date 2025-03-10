@@ -10,21 +10,21 @@ const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
 const weather = require("./config/weather"); // Import the weather functions
 const path = require("path"); // Import path module
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require("express-rate-limit");
 
 const app = express();
 
 const port = 3000;
 
-const limiter = rateLimit({
-    windowMs: 10 * 60 * 1000, 
-    max: 100,
-    message: 'Too many requests from this IP, please try again later.',
-    headers: true, 
-  });
+// const limiter = rateLimit({
+//   windowMs: 10 * 60 * 1000,
+//   max: 100,
+//   message: "Too many requests from this IP, please try again later.",
+//   headers: true,
+// });
 
 // Middleware setup
-app.use(limiter);
+// app.use(limiter);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public"))); // Serve public files
