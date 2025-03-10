@@ -9,7 +9,8 @@
     "clean-db": "rm database.db #remove the old database",
     "build-db-win": "sqlite3 database.db < db_schema.sql",
     "clean-db-win": "del database.db",
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "npm rebuild sqlite3 --build-from-source"
   },
   "author": "Simon Katan",
   "license": "ISC",
@@ -30,7 +31,7 @@
   },
   "engines": {
     "npm": ">=8.0.0",
-    "node": ">=16.0.0"
+    "node": "20.x"
   },
   "devDependencies": {
     "chai": "^5.2.0",

@@ -1,0 +1,3 @@
+{
+  "packages": ["g++", "gcc", "python3"]
+}
