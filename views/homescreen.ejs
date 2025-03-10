@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>SideQuest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bodyHS">
+    <img
+      src="/pictures/Sidequest_title.png"
+      alt="SideQuest Logo"
+      class="logo"
+    />
+
+    <!-- Enhanced Clouds Container -->
+    <div class="clouds-container">
+      <img src="/pictures/cloud_bg1.png" alt="Cloud" class="cloudHS cloud1HS" />
+      <img src="/pictures/cloud_bg2.png" alt="Cloud" class="cloudHS cloud2HS" />
+      <img src="/pictures/cloud_bg1.png" alt="Cloud" class="cloudHS cloud3HS" />
+      <img src="/pictures/cloud_bg2.png" alt="Cloud" class="cloudHS cloud4HS" />
+    </div>
+
+    <div class="backgroundHS">
+      <img src="/pictures/grass_bg1.jpg" alt="Background Left" />
+      <img src="/pictures/grass_bg2.jpg" alt="Background Right" />
+      <img src="/pictures/side_castle.png" alt="Side Castle" class="castle" />
+      <img src="/pictures/Captain.png" alt="Captain" class="captain" />
+
+      <!-- Enhanced Trees Container -->
+      <div class="trees-containerHS">
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree0HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree1HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree2HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree3HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree4HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree5HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree6HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree7HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree8HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree9HS"
+        />
+        <img
+          src="/pictures/tree.gif"
+          alt="Animated Tree"
+          class="treeHS tree10HS"
+        />
+      </div>
+    </div>
+
+    <% if (typeof account_username !== 'undefined') { %>
+    <p>Welcome <%= account_username %></p>
+    <a href="/logout" class="buttonLoginLogout">Logout</a>
+    <% } else { %>
+    <a href="/login" class="buttonLoginLogout">Start Quest Now!</a>
+    <% } %>
+  </body>
+</html>

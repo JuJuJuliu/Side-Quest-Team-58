@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/view-post.css" />
+    <title>View-Post</title>
+</head>
+<body>
+    <!-- Post information  -->
+    <div class="article-info">
+        <header>
+            <% if (typeof account_username !== 'undefined') { %>
+                <p>Welcome <%= account_username %></p> <br><br>
+                <a href="/logout" class="button">Logout</a> <br><br>
+            <% } else { %>
+                <a href="/login" class="button">Login</a> <br><br>
+            <% } %>
+            <h2><%= article ? article.title : 'New Draft' %></h2>
+            <h3></h3>
+        </header>
+        <div class="article-stats">
+            <span><b>Published by: </b><%= article.created_by %></span>
+            <span><b>Published at:</b> <%= article ? article.published_at : 'N/A' %></span>
+            <span><b>Number of clicks:</b> <%= article ? article.click_counter : 0 %></span>
+            <span><b>Number of likes:</b> <%= article ? article.likes_count : 0 %></span>
+            <span><b>Reward Amount:</b> <%= article ? article.reward_amount : 'N/A' %></span>
+            <% if (typeof account_username !== 'undefined' && account_id !== article.account_id) { %>
+                <form action="/viewer/like/<%= article.article_id %>" method="get" class="like-form">
+                    <button type="submit" class="like-button">Like</button>
+                </form>
+            <% } else { %>
+                
+            <% } %>
+        </div>
+        <div class="article-helpers">
+            <% if (typeof account_username !== 'undefined' && account_id !== article.account_id) { %>
+                <form action="/viewer/helper" method="post" class="helper-form">
+                    <input type="hidden" name="article_id" value="<%= article.article_id %>">
+                    <button type="submit" class="helper-button">Take on this request</button>
+                </form>
+            <% } else { %>      
+
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Post Content -->
+    <div class="article-content">
+        <span><%= article ? article.content : 'N/A' %></span>
+    </div>
+    
+    <div class="container">
+        <div class="left-side">
+            <div class="comment-form">
+                <h2>Drop a Comment</h2>
+                <% if (typeof account_username !== 'undefined') { %>
+                    <form id="comment-form" method="POST" action="/viewer/comment">
+                        <input type="hidden" id="article_id" name="article_id" value="<%= article ? article.article_id : '' %>">
+                        <input type="hidden" id="account_id" name="account_id" value="<%= account_id %>">
+                        <input type="text" id="user_name" name="user_name" value="<%= account_username %>" readonly required>
+                        <textarea id="comment" name="comment" placeholder="Write Something" required></textarea>
+                        <button type="submit">Submit Comment</button>
+                    </form>
+                <% } else { %>
+                    <p>Please <a href="/login">log in</a> to comment.</p>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="dynamiclist-comment">
+                <ul>
+                    <% comments.forEach(comment => { %>
+                        <li class="comment-item">
+                            <h3><%= comment.user_name %></h3>
+                            <p><%= comment.comment_text %></p>
+                            <span><b>Published at:</b> <%= comment.published_at %></span>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+     <!-- Navigate Back to questboard -->
+    <div class = "backhome">
+        <a class="homepage-link" href="/viewer/view-questboard">Back to Quest Board!</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/main.css" />  
+    <title>Hero's Quest Management</title>
+    <style> 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body class="bodyUP">
+    <!-- Manage Requests -->
+    <div class="blogtopUP">
+        <div class="left-contentUP">
+            <h1 class="h1UP">Hero's Quest Management</h1>
+            <h2 class="h2UP">Guild Master's Portal</h2>
+            <p>Welcome Brave Adventurer!</p>
+            <a href="/homepage" class="buttonUP">Return to Town</a>
+        </div>
+        <div class="right-contentUP">
+            <a href="/user/view-profile" class="settings-linkUP">Hero Profile</a>
+        </div>
+    </div>
+
+    <div class="dynamiclistUP">
+        <div class="listtitleUP">
+            <h2 class="h2UP">Manage My Requests</h2>
+        </div>
+        <ul class="article-listUP"></ul>
+        <li class="article-listUP">
+            <% articlePublished.forEach(article => { %>
+                <li class="article-allUP">
+                    <header>
+                        <h2 class="h2UP"><%= article.title %></h2>
+                        <div class="actionsUP">
+                            <!-- form to delete the article -->
+                            <form action="/user/delete/<%= article.article_id %>" method="get" onsubmit="return confirm('Delete this Request?');">
+                                <button class="buttonUP" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </header>
+                    <div class="article-infoUP">
+                        <span><b>Quest by: <%= article.created_by %></b></span>
+                        <span><b>Created at:</b> <%= article.created_at %></span>
+                        <span><b>Published at:</b> <%= article.published_at %></span>
+                        <span><b>Last modified:</b> <%= article.updated_at %></span>
+                        <span><b>Number of reads:</b> <%= article.click_counter %></span>
+                        <span><b>Number of likes:</b> <%= article.likes_count %></span>
+                        <span><b>Tag:</b> <%= article.tag ? article.tag : "No tag" %></span>
+                        <span><b>Reward Amount:</b> <%= article.reward_amount %></span>
+                    </div>
+                    <!-- Manage the Post itself -->
+                    <a href="/viewer/user-questinfo/<%= article.article_id %>">Manage Quest!</a>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <!--Draft Posts -->
+    <div class="dynamiclistUP">
+        <div class="listtitleUP">
+            <h2 class="h2UP">Draft Request: Quest Awaiting Submission</h2>
+            <a href="/user/post-edit">
+                <button class="buttonUP" type="button">Post New Quest</button>
+            </a>
+        </div>
+       
+        <ul class="article-listUP">
+            <% articleDraft.forEach(article => { %>
+                <li class="article-allUP">
+                    <header>
+                        <h2 class="h2UP"><%= article.title %></h2>
+                        <div class="actionsUP">
+                            <!-- Edit Request-->
+                            <form action="/user/post-edit/<%= article.article_id %>" method="get">
+                                <button class="buttonUP" type="submit">Edit</button>
+                            </form>
+                            <!-- Delete Request -->
+                            <form action="/user/delete/<%= article.article_id %>" method="get" onsubmit="return confirm('Are you sure you want to delete this article?');">
+                                <button class="buttonUP" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </header>
+                    <div class="article-infoUP">
+                        <span><b>Created at:</b> <%= article.created_at %></span>
+                        <span><b>Last modified:</b> <%= article.updated_at %></span>
+                        <span><b>Reward Amount:</b> <%= article.reward_amount %></span>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+    
+    <!-- bottom nav back to home -->
+    <div class="backhomeUP">
+        <a class="homepage-linkUP" href="/viewer/view-questboard">Return to Quest Hub</a>
+    </div>
+</body>
+</html>

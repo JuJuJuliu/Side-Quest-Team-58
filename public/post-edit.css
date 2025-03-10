@@ -1,0 +1,527 @@
+/* Fantasy Quest Board - Core CSS Styles
+========================================== */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=VT323&display=swap');
+
+/* Variables */
+:root {
+    /* Enhanced Cream & Brown Colors */
+    --primary-color: #795548;       /* Deeper brown */
+    --secondary-color: #f9e7c4;     /* Softer cream */
+    --tertiary-color: #a67c52;      /* Rich medium brown */
+    --background-color: #f8f2e2;    /* Light cream background */
+    --text-primary: #3e2723;        /* Dark chocolate brown */
+    --text-secondary: #5d4037;      /* Medium brown text */
+    --accent-color: #4e342e;        /* Deep espresso brown */
+    
+    /* Tag Colors with Cream Bases */
+    --tag-help-color: #fff8e1;      /* Cream yellow base */
+    --tag-events-color: #e8f5e9;    /* Cream blue-green base */
+    --tag-notices-color: #fff3e0;   /* Cream orange base */
+    --tag-misc-color: #5d4037;      /* Brown misc tag */
+    
+    /* UI Elements */
+    --card-bg-color: rgba(252, 248, 240, 0.85); /* Creamy card background */
+    --button-gradient: linear-gradient(to bottom, #f9e7c4 0%, #d7bc8f 100%);
+    --button-hover-gradient: linear-gradient(to bottom, #fff3cf 0%, #e8cda0 100%);
+    
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    
+    /* Borders */
+    --border-radius-sm: 5px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-width: 3px;
+    --border-width-thick: 5px;
+    
+    /* Shadows */
+    --shadow-sm: 0 3px 6px rgba(62, 39, 35, 0.15);
+    --shadow-md: 0 6px 15px rgba(62, 39, 35, 0.25);
+    --shadow-inset: inset 0 0 10px rgba(249, 231, 196, 0.6);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    z-index: -1;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'VT323', monospace;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 0 var(--secondary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 0 var(--secondary-color), 4px 4px 0 rgba(62, 39, 35, 0.15);
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Container Layout */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    border: 8px solid var(--primary-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md), var(--shadow-inset);
+    position: relative;
+    background-color: var(--card-bg-color);
+}
+
+/* Header Styling */
+.quest-header {
+    text-align: center;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 3px solid var(--tertiary-color);
+}
+
+/* Button Styling */
+.button, button {
+    display: inline-block;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    background: var(--button-gradient);
+    padding: 10px 20px;
+    border: 3px solid var(--tertiary-color);
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    margin: var(--spacing-sm) 0;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(62, 39, 35, 0.2);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.3s;
+}
+
+.button:hover, button:hover {
+    background: var(--button-hover-gradient);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(62, 39, 35, 0.3);
+}
+
+.button:active, button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(62, 39, 35, 0.2);
+}
+
+/* Quest Board / List Container */
+.quest-board {
+    margin-top: var(--spacing-xl);
+    background: var(--card-bg-color);
+    border: var(--border-width-thick) solid var(--primary-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.board-title {
+    text-align: center;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--tertiary-color);
+}
+
+/* Sorting Options */
+.sorting-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-sm);
+    background: rgba(166, 124, 82, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 2px dashed var(--tertiary-color);
+}
+
+.sorting-options label {
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+select {
+    font-family: 'Lato', sans-serif;
+    padding: 8px;
+    border: 2px solid var(--tertiary-color);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* Quest List */
+.quest-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+/* Quest Card */
+.quest-card {
+    background: rgba(252, 248, 240, 0.9);
+    border: 3px solid var(--tertiary-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.quest-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--secondary-color), var(--tertiary-color), var(--secondary-color));
+}
+
+.quest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(62, 39, 35, 0.2);
+}
+
+.quest-card header h3 {
+    font-size: 1.6rem;
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.quest-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    border-top: 1px dashed var(--tertiary-color);
+    border-bottom: 1px dashed var(--tertiary-color);
+    padding: var(--spacing-sm) 0;
+}
+
+.quest-info span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.quest-card a {
+    display: inline-block;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: #fff;
+    background: linear-gradient(to bottom, var(--tertiary-color) 0%, var(--primary-color) 100%);
+    padding: 8px 15px;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    transition: all 0.3s;
+}
+
+.quest-card a:hover {
+    background: linear-gradient(to bottom, #b88e63 0%, #8b6144 100%);
+    transform: scale(1.05);
+}
+
+/* Category Tag Styling */
+.quest-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 2px 3px rgba(62, 39, 35, 0.2);
+    text-shadow: 1px 1px 0 rgba(62, 39, 35, 0.4);
+}
+
+/* Help quests */
+.quest-tag-help {
+    background: linear-gradient(to bottom, var(--tag-help-color) 0%, #d4a72c 100%);
+    border: 2px solid #a67c52;
+    color: #5d4037;
+}
+
+/* Events quests */
+.quest-tag-events {
+    background: linear-gradient(to bottom, var(--tag-events-color) 0%, #66bb6a 100%);
+    border: 2px solid #388e3c;
+    color: #1b5e20;
+}
+
+/* Notices quests */
+.quest-tag-notices {
+    background: linear-gradient(to bottom, var(--tag-notices-color) 0%, #ffb74d 100%);
+    border: 2px solid #f57c00;
+    color: #5d4037;
+}
+
+/* Miscellaneous quests */
+.quest-tag-misc {
+    background: linear-gradient(to bottom, var(--tag-misc-color) 0%, #8d6e63 100%);
+    border: 2px solid #5d4037;
+    color: #f8f2e2;
+}
+
+/* Hover effect for tags */
+.quest-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(62, 39, 35, 0.3);
+}
+
+/* Welcome Message */
+.welcome-msg {
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+    margin: var(--spacing-md) 0;
+    background: rgba(249, 231, 196, 0.4);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    border-left: 5px solid var(--tertiary-color);
+}
+
+/* Blog Top Bar */
+.blogtop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: rgba(249, 231, 196, 0.7);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-lg);
+    border: 3px solid var(--tertiary-color);
+}
+
+.settings-link {
+    display: inline-block;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(to bottom, #a67c52 0%, #5d4037 100%);
+    padding: 10px 10px;
+    border: 3px solid var(--tertiary-color);
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    margin: var(--spacing-sm) 0;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #3e2723;
+    text-shadow: 1px 1px 0 rgba(62, 39, 35, 0.5);
+    transition: all 0.3s;
+}
+
+.settings-link:hover {
+    background: linear-gradient(to bottom, #b88e63 0%, #6d4c41 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #3e2723;
+}
+
+.settings-link:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 0 #3e2723;
+}
+
+/* Back Button */
+.back-link {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+.homepage-link {
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    transition: all 0.3s;
+    border-bottom: 2px dashed var(--tertiary-color);
+}
+
+.homepage-link:hover {
+    transform: scale(1.1);
+    border-bottom-style: solid;
+}
+
+/* Form Styling (for Edit Page) */
+.edit-form {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 0 #d7bc8f, 0 12px 20px rgba(62, 39, 35, 0.15);
+    padding: var(--spacing-xl);
+    margin-top: var(--spacing-md);
+    border: 4px solid var(--tertiary-color);
+    position: relative;
+}
+
+.edit-form:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--tertiary-color), var(--secondary-color), var(--primary-color), var(--tertiary-color));
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+@keyframes gradient {
+    0% {background-position: 0% 50%}
+    50% {background-position: 100% 50%}
+    100% {background-position: 0% 50%}
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 3px solid var(--tertiary-color);
+    border-radius: var(--border-radius-md);
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    background-color: rgba(252, 248, 240, 0.7);
+    margin-bottom: var(--spacing-md);
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--tertiary-color);
+    box-shadow: 0 0 10px rgba(166, 124, 82, 0.5);
+    background-color: white;
+}
+
+input[type="text"] {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+input[type="number"] {
+    width: 100%;  
+    box-sizing: border-box; 
+}
+
+textarea {
+    min-height: 300px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+label {
+    font-weight: bold;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+/* Action Buttons */
+.save-button, button[formaction="/user/save"] {
+    background: linear-gradient(to bottom, #d7bc8f 0%, #a67c52 100%);
+    color: white;
+    box-shadow: 0 4px 0 #8b6144;
+}
+
+.save-button:hover, button[formaction="/user/save"]:hover {
+    background: linear-gradient(to bottom, #e8cda0 0%, #b88e63 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #8b6144;
+}
+
+.publish-button, button[formaction="/user/publish"] {
+    background: linear-gradient(to bottom, #a67c52 0%, #5d4037 100%);
+    color: white;
+    box-shadow: 0 4px 0 #3e2723;
+    margin-left: var(--spacing-sm);
+}
+
+.publish-button:hover, button[formaction="/user/publish"]:hover {
+    background: linear-gradient(to bottom, #b88e63 0%, #6d4c41 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #3e2723;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .quest-info {
+        grid-template-columns: 1fr;
+    }
+    
+    button {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    button[formaction="/user/publish"] {
+        margin-left: 0;
+    }
+    
+    .blogtop {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .right-content {
+        margin-top: var(--spacing-md);
+    }
+}

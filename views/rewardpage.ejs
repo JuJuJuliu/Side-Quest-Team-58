@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <title>Reward-page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="bodyRP">
+    <p class="pRP">Username <%= account_username %></p>
+    <p class="pRP">Points: <%= reward_points %></p>
+
+    <h2 class="h2RP">Available Rewards</h2>
+    <ul class="ulRP">
+      <% rewards.forEach(function(reward) { %>
+      <li>
+        <%= reward.reward_name %> - <%= reward.reward_cost %> Coins🪙
+        <form action="/user/claim-reward" method="POST" style="display: inline">
+          <input
+            type="hidden"
+            name="reward_name"
+            value="<%= reward.reward_name %>"
+          />
+          <input
+            type="hidden"
+            name="reward_cost"
+            value="<%= reward.reward_cost %>"
+          />
+          <button class="buttonRP" type="submit">Claim</button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+    <a class="homepage-linkRP" href="/homepage">Back to Side Quest</a>
+  </body>
+</html>

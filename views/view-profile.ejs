@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <title>Profile Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="bodyVP">
+    <h1 class="h1VP">User Profile</h1>
+    <p class="pVP">Welcome <%= account_username %></p>
+    <p class="pVP">Points: <%= reward_points %></p>
+    <p class="pVP">Email: <%= account_email %></p>
+    <p class="pVP">Address: <%= account_address %></p>
+    <p class="pVP">Phone number: <%= account_phonenumber %></p>
+    <a class="homepage-linkVP" href="/homepage">Back to Side Quest</a>
+  </body>
+</html>

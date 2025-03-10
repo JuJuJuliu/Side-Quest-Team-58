@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <title>View-Post</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="bodyUQI">
+    <!-- Post information  -->
+    <div class="article-infoUQI">
+      <header>
+        <p>Welcome <%= account_username %></p>
+        <br /><br />
+        <a href="/logout" class="buttonUQI">Logout</a> <br /><br />
+        <h2><%= article ? article.title : 'New Draft' %></h2>
+      </header>
+      <div class="article-statsUQI">
+        <span
+          ><b>Published at:</b> <%= article ? article.published_at : 'N/A'
+          %></span
+        >
+        <span
+          ><b>Number of clicks:</b> <%= article ? article.click_counter : 0
+          %></span
+        >
+        <span
+          ><b>Number of likes:</b> <%= article ? article.likes_count : 0
+          %></span
+        >
+        <span
+          ><b>Reward Amount:</b> <%= article ? article.reward_amount : 'N/A'
+          %></span
+        >
+      </div>
+    </div>
+
+    <!-- Display message if exists -->
+    <% if (typeof message !== 'undefined') { %>
+    <div class="messageUQI">
+      <p><%= message %></p>
+    </div>
+    <% } %>
+
+    <!-- Post Content -->
+    <div class="article-contentUQI">
+      <span><%= article ? article.content : 'N/A' %></span>
+    </div>
+
+    <div class="containerUQI">
+      <div class="left-sideUQI">
+        <div class="dynamiclist-commentUQI">
+          <ul>
+            <% comments.forEach(comment => { %>
+            <li class="comment-itemUQI">
+              <h3><%= comment.user_name %></h3>
+              <p><%= comment.comment_text %></p>
+              <span><b>Published at:</b> <%= comment.published_at %></span>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="containerUQI">
+      <div class="right-sideUQI">
+        <div class="dynamiclist-helpersUQI">
+          <ul>
+            <h2>Helpers:</h2>
+            <% helpers.forEach(helper => { %>
+            <li class="helper-itemUQI">
+              <h3><%= helper.user_name %></h3>
+              <span>Helper ID: <%= helper.id %></span>
+              <form
+                action="/viewer/helpers/delete/<%= helper.id %>"
+                method="post"
+                class="delete-helper-form"
+              >
+                <input
+                  type="hidden"
+                  name="article_id"
+                  value="<%= article.article_id %>"
+                />
+                <button type="submit" class="delete-helper-buttonUQI">
+                  Delete
+                </button>
+              </form>
+              <form
+                action="/viewer/helpers/reward/<%= helper.id %>"
+                method="post"
+                class="reward-helper-form"
+              >
+                <input
+                  type="hidden"
+                  name="article_id"
+                  value="<%= article.article_id %>"
+                />
+                <button type="submit" class="reward-helper-buttonUQI">
+                  Reward
+                </button>
+              </form>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigate Back to questboard -->
+    <div class="backhomeUQI">
+      <a class="homepage-linkUQI" href="/user/user-post"
+        >Back to Manage Quest!</a
+      >
+    </div>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/main.css" />
+    <title>About SideQuest!</title>
+    <style>
+      h1,
+      h2 {
+        font-family: "Press Start 2P", cursive;
+        color: #ff5f00;
+        text-shadow: 2px 2px 0px #4a2c00, 4px 4px 0px rgba(0, 0, 0, 0.2);
+        letter-spacing: 1px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        transform: rotate(-2deg);
+        display: inline-block;
+        background: url("/pictures/maple-banner.png") no-repeat center center;
+        background-size: 100% 100%;
+        padding: 25px 60px;
+        clear: both;
+        margin-top: 60px;
+      }
+
+      h2 {
+        font-size: 1.5em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body class="bodyAU">
+    <div class="nav-containerAU">
+      <div class="welcome-messageAU">
+        <% if (typeof account_username !== 'undefined') { %> Welcome, <%=
+        account_username %>! <% } else { %> Welcome, Adventurer! <% } %>
+      </div>
+      <div class="nav-linksAU">
+        <a href="/homepage" class="buttonAU nav-buttonAU">Home</a>
+        <% if (typeof account_username !== 'undefined') { %>
+        <a href="/logout" class="buttonAU nav-buttonAU">Logout</a>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="containerAU">
+      <h1>About SideQuest!</h1>
+
+      <div class="mission-box">
+        <h2>Our Mission</h2>
+        <p>
+          Connecting adventurers with those in need. We believe every quest, no
+          matter how small, can make a big difference in someone's life!
+        </p>
+      </div>
+
+      <div class="about-sectionAU">
+        <h2>Our Story</h2>
+        <p>
+          SideQuest! was born from a simple idea - in our busy world, many
+          people need help with everyday tasks, while others have skills and
+          time they'd like to share. We created this platform to bridge that
+          gap, bringing together those who need assistance with willing helpers
+          in a fun, adventurous way.
+        </p>
+
+        <p>
+          Inspired by the camaraderie and quest-based format of classic RPGs,
+          SideQuest! transforms ordinary tasks into exciting missions. Whether
+          you're posting a quest for assistance or taking on someone else's
+          request, you're part of our growing community of real-life
+          adventurers.
+        </p>
+
+        <p>
+          Since our launch, we've facilitated thousands of successful quests,
+          from garden maintenance to computer repairs, grocery deliveries to pet
+          sitting. Each completed quest strengthens our community and proves
+          that a little help can go a long way.
+        </p>
+      </div>
+
+      <h2>Meet The Team</h2>
+      <div class="team-section">
+        <div class="team-member">
+          <img src="/pictures/Hero2.png" alt="Team Member Portrait" />
+          <h3>Julius</h3>
+          <p>Lead Developer</p>
+          <p>
+            01001000 01100101 01101100 01101100 01101111 00101100 00100000 01101101 01111001 00100000 01101110 01100001 
+            01101101 01100101 00100000 01101001 01110011 00100000 01001010 01110101 01101100 01101001 01110101 01110011
+            <br>
+            ~It's not a bug👾, it's a feature!
+          </p>
+        </div>
+
+        <div class="team-member">
+          <img src="/pictures/BabyDragon.png" alt="Team Member Portrait" />
+          <h3>Aiman</h3>
+          <p>Frontend Developer</p>
+          <p>
+            A creative mind who crafts intuitive interfaces that make
+            quest-taking feel like an exciting adventure.
+          </p>
+        </div>
+
+        <div class="team-member">
+          <img src="/pictures/Ninja.png" alt="Team Member Portrait" />
+          <h3>Keefe</h3>
+          <p>Backend Developer</p>
+          <p>
+            Our detail-oriented team member who makes sure all quests run
+            smoothly.
+          </p>
+        </div>
+
+        <div class="team-member">
+          <img src="/pictures/Healer2.png" alt="Team Member Portrait" />
+          <h3>Janelle</h3>
+          <p>User Experience Designer</p>
+          <p>
+            The friendly face of SideQuest! who ensures every adventurer feels
+            welcome.
+          </p>
+        </div>
+
+        <div class="team-member">
+          <img src="/pictures/Captain.png" alt="Team Member Portrait" />
+          <h3>Zhi Heng</h3>
+          <p>Project Advisor</p>
+          <p>
+            Our trusted project advisor who provides valuable insights and
+            guidance, ensuring every step of the journey stays on course.
+          </p>
+        </div>
+      </div>
+      <div class="about-sectionAU">
+        <h2>Join Our Adventure!</h2>
+        <p>
+          Whether you're seeking help or looking to lend a hand, SideQuest!
+          welcomes you to our community. Every quest completed makes the world a
+          little brighter!
+        </p>
+
+        <p>
+          Have questions or feedback? We'd love to hear from you! Contact us at
+          <strong>help@sidequest.com</strong>
+        </p>
+
+        <a href="/viewer/view-questboard" class="button">View Questboard ⚔️</a>
+      </div>
+    </div>
+  </body>
+</html>

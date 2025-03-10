@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/homepage.css" />
+    <title>SideQuest!</title>
+</head>
+<body class="bodyHP">
+    <div class="mascot"></div>
+
+    <% if (typeof account_username !== 'undefined') { %>
+        <div class="nav-container">
+            <div class="welcome-message">
+                <a class="homepage-linkQB" href="/user/view-profile">Welcome, <%= account_username %>!📜</a>
+            </div>
+            <div class="nav-links">
+                <li><a href="/user/about-us" class="button nav-button">About Us</a></li>
+                <a href="/logout" class="button nav-button">Logout</a>
+            </div>
+        </div>
+        <div class="content-wrapper">
+    <% } else { %>
+        <div class="login-container">
+            <a href="/login" class="button">Login 🔑</a>
+        </div>
+    <% } %>
+
+    <h1>SideQuest!</h1>
+
+    <div class="weather-container">
+        <div class="weather-box">
+            <h3>2-Hour Weather Forecast</h3>
+            <form method="get" action="/homepage">
+                <label for="area-filter">Select Area:</label>
+                <select name="area" id="area-filter">
+                    <option value="">All Areas</option>
+                    <% if (twoHourWeather) { %>
+                        <% twoHourWeather.forEach(function(forecast) { %>
+                            <option value="<%= forecast.area %>" <%= areaFilter === forecast.area ? 'selected' : '' %>><%= forecast.area %></option>
+                        <% }); %>
+                    <% } %>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+            <% if (twoHourWeather) { %>
+                <% twoHourWeather.forEach(function(forecast) { %>
+                    <% if (!areaFilter || forecast.area === areaFilter) { %>
+                        <div class="weather-details">
+                            <div><strong>Area:</strong> <%= forecast.area %></div>
+                            <div><strong>Forecast:</strong> <%= forecast.forecast %></div>
+                        </div>
+                    <% } %>
+                <% }); %>
+            <% } else { %>
+                <p>Unable to fetch 2-hour weather data at this moment.</p>
+            <% } %>
+        </div>
+
+        <div class="weather-box">
+            <h3>24-Hour Weather Forecast</h3>
+            <% if (weather) { %>
+                <div class="weather-details">
+                    <div>
+                        <strong>Forecast:</strong> <%= weather.forecast %>
+                    </div>
+                    <div>
+                        <strong>Temperature:</strong> <%= weather.temperatureLow %>°C to <%= weather.temperatureHigh %>°C
+                    </div>
+                    <div>
+                        <strong>Humidity:</strong> <%= weather.humidityLow %>% to <%= weather.humidityHigh %>%
+                    </div>
+                    <div>
+                        <strong>Wind Speed:</strong> <%= weather.windSpeedLow %> km/h to <%= weather.windSpeedHigh %> km/h
+                    </div>
+                    <div>
+                        <strong>Wind Direction:</strong> <%= weather.windDirection %>
+                    </div>
+                </div>
+            <% } else { %>
+                <p>Unable to fetch 24-hour weather data at this moment.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Adventure Guild Board -->
+    <div class="guild-board">
+        <h3>Adventurer's Guild Scroll</h3>
+        <ul>
+            <% if (typeof account_username !== 'undefined') { %>
+                <li><a href="/user/user-post" class="button">📖 Quests Manager</a></li>
+                <li><a href="/user/view-questtaken" class="button">📜View Quests Taken</a></li>
+                <li><a href="/viewer/view-questboard" class="button">⚔️ Questboard</a></li>
+                <li><a href="/user/view-reward" class="button">🎁 Reward Page</a></li>
+            <% } else { %>
+                <li><p>🗝️ Login to make a request!</p></li>
+            <% } %>
+        </ul>
+    </div>
+</body>
+</html>

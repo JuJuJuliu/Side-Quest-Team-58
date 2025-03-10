@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <title>QuestTaken</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="bodyQT">
+    <div class="dynamiclist-readerQT">
+      <div class="listtitleQT">
+        <h2>Quests Taken</h2>
+      </div>
+
+      <ul class="article-listQT">
+        <% articlePublished.forEach(article => { %>
+        <li class="article-allQT">
+          <header>
+            <h2><%= article.title %></h2>
+          </header>
+          <div class="article-infoQT">
+            <span><b>Quest by:</b> <%= article.created_by %></span>
+            <span><b>Published at:</b> <%= article.published_at %></span>
+            <span><b>Number of clicks:</b> <%= article.click_counter %></span>
+            <span><b>Number of likes:</b> <%= article.likes_count %></span>
+            <span
+              ><b>Tags:</b> <%= article.tags ? article.tags : "No tags" %></span
+            >
+            <span><b>Reward Amount:</b> <%= article.reward_amount %></span>
+          </div>
+          <!-- Link to the post -->
+          <a href="/viewer/view-post/<%= article.article_id %>">View Quest!</a>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+
+    <div class="backhomeQT">
+      <a class="homepage-linkQT" href="/homepage">Back to Side Quest</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/post-edit.css" />
+    <title>Post-Edit</title>
+  </head>
+  <body>
+    <!-- Post Edit-->
+    <div class="blogtop">
+      <div class="left-content">
+        <h1><%= article ? article.title : 'New Draft' %></h1>
+        <p>Welcome <%= account_username %></p>
+        <br /><br />
+      </div>
+      <div class="right-content">
+        <a href="/user/user-setting" class="settings-link">User Settings</a>
+      </div>
+    </div>
+
+    <span><b>Created at:</b> <%= article ? article.created_at : 'N/A' %></span>
+    <span
+      ><b>Last modified:</b> <%= article ? article.updated_at : 'N/A' %></span
+    >
+
+    <!-- edit page main function  -->
+    <div class="edit-form">
+      <form id="edit-form" method="POST">
+        <input
+          type="hidden"
+          id="article_id"
+          name="article_id"
+          value="<%= article ? article.article_id : '' %>"
+        />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Title"
+          value="<%= article ? article.title : '' %>"
+        />
+        <textarea id="content" name="content" placeholder="Content">
+<%= article ? article.content : '' %></textarea
+        ><br />
+
+        <!-- Reward amount -->
+        <label for="reward">Reward Amount:</label>
+        <input
+          type="number"
+          id="reward_give"
+          name="reward_give"
+          placeholder="You have <%= reward_points %> points"
+          value="<%= article ? article.reward : '' %>"
+          min="0"
+          max="<%= reward_points %>"
+          required
+        /><br />
+
+        <!-- Tag Selection -->
+        <label for="tags">Tags:</label>
+        <select id="tags" name="tags">
+          <option value="" disabled selected>Select a Tag</option>
+          <option value="Help">Help</option>
+          <option value="Events">Events</option>
+          <option value="Notices">Notices</option></select
+        ><br />
+
+        <div class="back-link">
+          <a class="homepage-link" href="/user/user-post"
+            >Back to Quest Board!</a
+          >
+        </div>
+        <!-- Save/Publish buttons -->
+        <button type="submit" formaction="/user/save">Save</button>
+        <button type="submit" formaction="/user/publish">Publish</button>
+      </form>
+    </div>
+  </body>
+</html>

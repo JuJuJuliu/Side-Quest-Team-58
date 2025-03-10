@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/main.css" />  
+    <title>QuestBoard</title>
+    <style>    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body class="bodyQB">
+    <div class="containerQB">
+        <h1 class="h1QB">SIDEQUEST</h1>
+        <h2 class="h2QB">By Team 58</h2>
+        <% if (typeof account_username !== 'undefined') { %>
+            <div class="welcome-msgQB">
+                <p>Welcome, Brave Adventurer <%= account_username %>!</p>
+            </div>
+            <a href="/homepage" class="buttonQB">Return to Town</a>
+        <% } else { %>
+            <a href="/login" class="buttonQB">Join the Adventure</a>
+        <% } %>
+        <div class="dynamiclist-readerQB">
+            <div class="listtitleQB">
+                <h2 class="h2QB">Available Quests</h2>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-containerQB">
+                <div class="search-formQB">
+                    <input 
+                        type="text" 
+                        class="search-inputQB" 
+                        id="quest-search" 
+                        placeholder="Search Quests..."
+                    >
+                    <button type="button" class="search-buttonQB" onclick="searchQuests()">Search</button>
+                </div>
+            </div>
+
+            <!-- Sorting Posts -->
+            <div class="sorting-optionsQB">
+                <label for="sort-by">Sort Quests by:</label>
+                <select id="sort-by" onchange="sortArticles()">
+                    <option value="published_at" <%= sortBy === 'published_at' ? 'selected' : '' %>>Date Posted</option>
+                    <option value="likes_count" <%= sortBy === 'likes_count' ? 'selected' : '' %>>Popularity</option>
+                    <option value="click_counter" <%= sortBy === 'click_counter' ? 'selected' : '' %>>Times Viewed</option>
+                </select>
+            </div>
+            <!-- Sorting by Tags -->
+            <div class="sorting-optionsQB">
+                <label for="tag-filter">Filter by Tag:</label>
+                <select id="tag-filter" onchange="filterByTag()">
+                    <option value="">All</option>
+                    <option value="help" <%= selectedTag === 'help' ? 'selected' : '' %>>Help</option>
+                    <option value="event" <%= selectedTag === 'event' ? 'selected' : '' %>>Event</option>
+                    <option value="notice" <%= selectedTag === 'notice' ? 'selected' : '' %>>Notice</option>
+                    <option value="misc" <%= selectedTag === 'misc' ? 'selected' : '' %>>Miscellaneous</option>
+                </select>
+            </div>
+
+            <!-- No results message -->
+            <div id="no-results-message" class="no-results hidden">
+                No quests match your search criteria. Try a different search term.
+            </div>
+
+            <ul class="article-listQB" id="quest-list">
+                <% articlePublished.forEach(article => { %>
+                    <li class="article-allQB" data-title="<%= article.title %>" data-creator="<%= article.created_by %>" data-tag="<%= article.tag || 'misc' %>">
+                        <header>
+                            <h2 class="h2QB"><%= article.title %></h2>
+                        </header>
+                        <div class="article-infoQB">
+                            <span><b>Quest Giver:</b> <%= article.created_by %></span>
+                            <span><b>Posted:</b> <%= article.published_at %></span>
+                            <span><b>Views:</b> <%= article.click_counter %></span>
+                            <span><b>Popularity:</b> <%= article.likes_count %> ★</span>
+                            <span><b>Reward Amount:</b> <%= article.reward_amount %></span>
+                            <span><b>Category:</b> 
+                                <% if (article.tag) { %>
+                                    <% 
+                                        let tagClass = "misc";
+                                        if (article.tag.toLowerCase().includes("help")) tagClass = "help";
+                                        else if (article.tag.toLowerCase().includes("event")) tagClass = "events";
+                                        else if (article.tag.toLowerCase().includes("notice")) tagClass = "notices";
+                                    %>
+                                    <span class="quest-tag quest-tag-<%= tagClass %>"><%= article.tag %></span>
+                                <% } else { %>
+                                    <span class="quest-tag quest-tag-misc">Miscellaneous</span>
+                                <% } %>
+                            </span>
+                        </div>
+                        <!-- Link to the post -->
+                        <a href="/viewer/view-post/<%= article.article_id %>">Accept Quest!</a>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+
+        <div class="backhomeQB">
+            <a class="homepage-linkQB" href="/homepage">Return to Side Quest Hub</a>
+        </div>
+    </div>
+
+    <!-- Script section -->
+    <script>
+        function sortArticles() {
+            const sortBy = document.getElementById('sort-by').value;
+            window.location.href = `/viewer/view-questboard?sortBy=${sortBy}`;
+        }
+
+        function filterByTag() {
+            const tag = document.getElementById('tag-filter').value;
+            const sortBy = document.getElementById('sort-by').value;
+            window.location.href = `/viewer/view-questboard?sortBy=${sortBy}&tag=${tag}`;
+        }
+        
+        function searchQuests() {
+            const searchTerm = document.getElementById('quest-search').value.toLowerCase();
+            const questItems = document.querySelectorAll('#quest-list li');
+            let visibleCount = 0;
+            
+            questItems.forEach(item => {
+                const title = item.getAttribute('data-title').toLowerCase();
+                const creator = item.getAttribute('data-creator').toLowerCase();
+                const tag = item.getAttribute('data-tag').toLowerCase();
+                
+                if (title.includes(searchTerm) || creator.includes(searchTerm) || tag.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+            
+            // Show or hide "no results" message
+            const noResultsMessage = document.getElementById('no-results-message');
+            if (visibleCount === 0 && searchTerm !== '') {
+                noResultsMessage.classList.remove('hidden');
+            } else {
+                noResultsMessage.classList.add('hidden');
+            }
+        }
+    </script>    
+</body>
+</html>

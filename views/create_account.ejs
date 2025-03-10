@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <title>Create Account</title>
+    <!-- Scripts Section to handle Logic -->
+    <script>
+      function validateForm() {
+        var email = document.getElementById("email").value;
+        var address = document.getElementById("address").value;
+        var phone = document.getElementById("phone").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (
+          email === "" ||
+          address === "" ||
+          phone === "" ||
+          username === "" ||
+          password === ""
+        ) {
+          alert("Please fill in all fields.");
+          return false;
+        }
+        if (password.length < 8 || !/\d/.test(password)) {
+          alert(
+            "Password must be at least 8 characters long and contain at least one number."
+          );
+          return false;
+        }
+
+        return true;
+      }
+
+      function validatePassword() {
+        var password = document.getElementById("password").value;
+        var passwordError = document.getElementById("password-error");
+
+        // Check if password is empty
+        if (password === "") {
+          passwordError.style.display = "none"; // Hide on empty initially
+          return;
+        }
+
+        // Check for minimum length
+        if (password.length < 8) {
+          passwordError.textContent =
+            "Password must be at least 8 characters long and contain at least one number.";
+          passwordError.style.display = "block";
+          return;
+        }
+
+        // Check for at least one number
+        if (!/\d/.test(password)) {
+          passwordError.textContent =
+            "Password must contain at least one number.";
+          passwordError.style.display = "block";
+          return;
+        }
+
+        passwordError.style.display = "none";
+      }
+
+      function validatePhoneNumber() {
+        var phone = document.getElementById("phone").value;
+        var phoneError = document.getElementById("phone-error");
+
+        // accepted format
+        if (phone === "") {
+          phoneError.style.display = "none"; // Hide on empty
+        } else if (!/^[0-9]+$/.test(phone)) {
+          phoneError.style.display = "block"; // error message
+        } else {
+          phoneError.style.display = "none";
+        }
+      }
+
+      function validateEmail() {
+        var email = document.getElementById("email").value;
+        var emailError = document.getElementById("email-error");
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Accepeted format
+
+        // Check if empty
+        if (email === "") {
+          emailError.style.display = "none"; // Hide error
+        } else if (!emailPattern.test(email)) {
+          emailError.style.display = "block"; // Show error
+        } else {
+          emailError.style.display = "none";
+        }
+      }
+
+      function handleArrowClick(event) {
+        event.preventDefault();
+
+        if (validateForm()) {
+          document.forms[0].submit();
+        }
+      }
+    </script>
+  </head>
+
+  <body class="bodyCA">
+    <img
+      src="/pictures/Hero2.png"
+      alt="Hero Image"
+      style="max-width: 100%; height: auto; margin-bottom: 20px"
+    />
+    <h1 class="h1CA">Create a profile</h1>
+    <p class="pCA">Connect with Your Community Today - One Quest at a Time!</p>
+
+    <% if (error) { %>
+    <div style="color: red; margin-bottom: 15px">
+      <strong><%= error %></strong>
+    </div>
+    <% } %>
+
+    <form class="formCA" action="/user/create-account" method="POST">
+      <input
+        type="email"
+        id="email"
+        name="account_email"
+        placeholder="Enter your email"
+        oninput="validateEmail()"
+        required
+      />
+      <div id="email-error">Please enter a valid email address.</div>
+
+      <input
+        type="textCA"
+        id="address"
+        name="account_address"
+        placeholder="Enter your address"
+        required
+      />
+
+      <input
+        type="tel"
+        id="phone"
+        name="account_phonenumber"
+        placeholder="Enter your phone number"
+        oninput="validatePhoneNumber()"
+        required
+      />
+      <div id="phone-error">Phone number must contain only digits.</div>
+
+      <input
+        type="textCA"
+        id="username"
+        name="account_username"
+        placeholder="Enter your username"
+        required
+      />
+
+      <input
+        type="passwordCA"
+        id="password"
+        name="account_password"
+        placeholder="Enter your password"
+        oninput="validatePassword()"
+        required
+      />
+      <div id="password-error" style="display: none; color: red">
+        Password must be at least 8 characters with at least one number.
+      </div>
+    </form>
+
+    <a href="/login" class="arrow-link" onclick="handleArrowClick(event)">
+      <img src="/pictures/side_arrow.png" alt="Arrow" />
+    </a>
+
+    <div class="backgroundCA">
+      <img src="/pictures/grass_bg1.jpg" alt="Background Left" />
+      <img src="/pictures/grass_bg2.jpg" alt="Background Right" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>SideQuest Login</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body class="bodyLogin">
+    <div class="scene-container">
+      <img src="/pictures/Hero.png" alt="Hero Character" class="character hero" />
+      <img src="/pictures/fire_patch.gif" alt="Fire Effect" class="fire-effect" />
+      <img src="/pictures/Wyvern.png" alt="Wyvern Character" class="character wyvern" />
+      
+      <div class="cloudsLogin">
+        <img src="/pictures/cloud_bg1.png" alt="Cloud" class="cloudLogin cloud1Login" />
+        <img src="/pictures/cloud_bg2.png" alt="Cloud" class="cloudLogin cloud2Login" />
+        <img src="/pictures/cloud_bg1.png" alt="Cloud" class="cloudLogin cloud3Login" />
+      </div>
+    </div>
+
+    <div class="logo-containerLogin">
+      <img src="/pictures/Sidequest_title.png" alt="SideQuest Logo" class="logoLogin" />
+      <p class="welcome-textLogin">EMBARK ON YOUR ADVENTURE!</p>
+    </div>
+
+    <div class="contentLogin">
+      <form action="/user/login" method="POST" class="formLogin">
+        <div class="formLogin-group">
+          <label class="labelLogin" for="username">USERNAME:</label>
+          <input class="inputLogin" type="text" id="username" name="account_username" required placeholder="Enter your hero name" />
+        </div>
+
+        <div class="formLogin-group">
+          <label class="labelLogin" for="password">PASSWORD:</label>
+          <input class="inputLogin" type="password" id="password" name="account_password" required placeholder="Enter your secret code" />
+        </div>
+
+        <button class="buttonStartQuest" type="submit">START QUEST</button>
+        <a href="/user/create-account" class="create-account">CREATE A NEW HERO</a>
+      </form>
+    </div>
+
+    <div class="backgroundLogin">
+      <img src="/pictures/grass_bg1.jpg" alt="Background Left" />
+      <img src="/pictures/grass_bg2.jpg" alt="Background Right" />
+    </div>
+  </body>
+</html>
